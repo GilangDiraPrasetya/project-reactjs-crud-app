@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Checkbox, Form } from 'semantic-ui-react';
 import axios from 'axios';
-// import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 export default function Update() {
   const [firstName, setFirstName] = useState('');
@@ -17,7 +17,7 @@ export default function Update() {
     setCheckbox(localStorage.getItem('Checkbox Value'));
   }, []);
 
-  // let history = useHistory();
+  const navigate = useNavigate();
   const updateAPIData = () => {
     axios
       .put(`https://6451ff5ebce0b0a0f739e68c.mockapi.io/fakeData/${id}`, {
@@ -25,9 +25,9 @@ export default function Update() {
         lastName,
         checkbox,
       })
-      // .then(() => {
-      //   history.push('/read');
-      // });
+      .then(() => {
+        navigate('/read');
+      });
   };
   return (
     <div>
